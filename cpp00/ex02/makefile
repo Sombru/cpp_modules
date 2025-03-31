@@ -1,14 +1,13 @@
 # Program name
-NAME = phonebook
+NAME = banking
 
 # Compiler
 CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror
 
 # Sources
-SRC = main.cpp \
-	  contact.cpp \
-	  phonebook.cpp
+SRC = tests.cpp \
+	  Account.cpp
 	  
 # Objects
 OBJ_PATH = obj/

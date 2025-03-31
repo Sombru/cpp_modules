@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pkostura <pkostura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 11:23:17 by pkostura          #+#    #+#             */
-/*   Updated: 2025/03/19 11:27:10 by pkostura         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:00:56 by pkostura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,53 @@ Contact::Contact()
 
 Contact::~Contact()
 {
-	std::cout << "Contact destructor\n";
+	std::cout << "Contact destructor for " << this->first_name << "\n";
 }
 
 // Getters
-std::string const &Contact::get_first_name() const
+std::string Contact::get_first_name() const
 {
-    return first_name;
+    if (this->first_name.length() > 10)
+        return this->first_name.substr(0, 9) + ".";
+    return this->first_name;
 }
 
-std::string const &Contact::get_last_name() const
+std::string Contact::get_last_name() const
 {
-    return last_name;
+    if (this->last_name.length() > 10)
+        return this->last_name.substr(0, 9) + ".";
+    return this->last_name;
 }
 
-std::string const &Contact::get_number() const
+std::string Contact::get_number() const
 {
-    return number;
+    if (this->number.length() > 10)
+        return this->number.substr(0, 9) + ".";
+    return this->number;
+}
+
+std::string Contact::get_darkest_secret() const
+{
+    return this->darkest_secret;
 }
 
 // Setters
 void Contact::set_first_name(const std::string &name)
 {
-    first_name = name;
+    this->first_name = name;
 }
 
 void Contact::set_last_name(const std::string &name)
 {
-    last_name = name;
+    this->last_name = name;
 }
 
 void Contact::set_number(const std::string &num)
 {
-    number = num;
+    this->number = num;
+}
+
+void Contact::set_darkest_secret(const std::string &secret)
+{
+	this->darkest_secret = secret;
 }

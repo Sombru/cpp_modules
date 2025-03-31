@@ -6,7 +6,7 @@
 /*   By: pkostura <pkostura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:47:16 by pkostura          #+#    #+#             */
-/*   Updated: 2025/03/19 11:22:48 by pkostura         ###   ########.fr       */
+/*   Updated: 2025/03/31 11:06:26 by pkostura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 # define PHONEBOOK_HPP
 
 
-// class PhoneBook // class - describes the structure
-// {
-// 	// public: // public accessed data(functions, variables)
-// }
+class PhoneBook // class - describes the structure
+{
+private:
+	Contact contacts[8];
+	int		index;
+	int		total_contacts;
+	
+public:
+	PhoneBook(void);
+	~PhoneBook(void);
+
+	bool is_running;
+	void print_input(const std::string input);
+	void match_input(const std::string input);
+	void display_contacts();
+	void add_contact();
+};
 
 #endif
