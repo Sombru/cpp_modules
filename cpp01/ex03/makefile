@@ -1,5 +1,5 @@
 # Program name
-NAME = phonebook
+NAME = arms_race
 
 # Compiler
 CC    = c++
@@ -7,9 +7,10 @@ FLAGS = -g -std=c++98 -Wall -Wextra -Werror
 
 # Sources
 SRC = main.cpp \
-	  Contact.cpp \
-	  Phonebook.cpp
-	  
+	  HumanA.cpp \
+	  Weapon.cpp \
+	  HumanB.cpp 
+
 # Objects
 OBJ_PATH = obj/
 OBJ 	 = $(SRC:.cpp=.o)

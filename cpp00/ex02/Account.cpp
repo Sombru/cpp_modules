@@ -8,14 +8,16 @@
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
-int	Account::_totalNbWithdrawals= 0;
+int	Account::_totalNbWithdrawals = 0;
 
 Account::Account(int initial_deposit)
 {
-	this->_accountIndex = _nbAccounts;
 	_nbAccounts++;
 	_totalAmount += initial_deposit;
-	_amount += initial_deposit;
+	this->_accountIndex = _nbAccounts;
+	this->_amount = initial_deposit;
+	this->_nbDeposits = 0;
+	this->_nbWithdrawals = 0;
 	_displayTimestamp();
 	std::cout	<< "index:"
 				<< _accountIndex 
@@ -66,6 +68,11 @@ int Account::getNbWithdrawals()
 	return _totalNbWithdrawals;
 }
 
+int Account::checkAmount() const
+{
+	return this->_amount;
+}
+
 void Account::displayAccountsInfos()
 {
 	_displayTimestamp();
@@ -92,11 +99,6 @@ void Account::displayStatus() const
 				<< ";withdrawals:"
 				<< this->_nbWithdrawals
 				<< '\n';
-}
-
-int Account::checkAmount() const
-{
-	return this->_amount;
 }
 
 // setters
@@ -130,7 +132,8 @@ bool Account::makeWithdrawal(int withdrawal)
 					<< _accountIndex
 					<< ";p_amount:"
 					<< this->_amount
-					<< ";withdrawal:refused";
+					<< ";withdrawal:refused"
+					<< '\n';
 		return (false);
 	}
 

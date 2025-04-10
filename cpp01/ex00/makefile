@@ -1,15 +1,16 @@
 # Program name
-NAME = phonebook
+NAME = zombies
 
 # Compiler
 CC    = c++
-FLAGS = -g -std=c++98 -Wall -Wextra -Werror
+FLAGS = -g -std=c++98 -Wall -Wextra -Werror -pedantic
 
 # Sources
 SRC = main.cpp \
-	  Contact.cpp \
-	  Phonebook.cpp
-	  
+	  Zombie.cpp \
+	  newZombie.cpp \
+	  randomChump.cpp
+
 # Objects
 OBJ_PATH = obj/
 OBJ 	 = $(SRC:.cpp=.o)

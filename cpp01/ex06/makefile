@@ -1,5 +1,5 @@
 # Program name
-NAME = phonebook
+NAME = harlFilter
 
 # Compiler
 CC    = c++
@@ -7,9 +7,8 @@ FLAGS = -g -std=c++98 -Wall -Wextra -Werror
 
 # Sources
 SRC = main.cpp \
-	  Contact.cpp \
-	  Phonebook.cpp
-	  
+	  Harl.cpp
+
 # Objects
 OBJ_PATH = obj/
 OBJ 	 = $(SRC:.cpp=.o)
