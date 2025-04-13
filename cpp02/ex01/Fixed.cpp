@@ -1,8 +1,9 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(): fixed_point(0)
+Fixed::Fixed(const int fixedNum): fixed_point(0)
 {
-    std::cout << "Fixed default constructor\n";
+    fixed_point = fixedNum << fractionalBits;
+    std::cout << "Fixed constructor, converting int to fixed point\n";
 }
 
 Fixed::~Fixed()

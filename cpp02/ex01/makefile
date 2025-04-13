@@ -1,5 +1,5 @@
 # Program name
-NAME = fixed
+NAME = fixedImproved
 
 # Compiler
 CC    = c++
