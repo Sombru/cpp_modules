@@ -69,3 +69,5 @@ std::ostream &operator<<(std::ostream &out, const Fixed &value)
 	out << value.toFloat(); // converts value to float as desired by the subject 
 	return out;
 }
+
+// 

@@ -22,6 +22,18 @@ public:
 	float toFloat() const;
 	int	toInt() const;
 
+	// operator overloads
+	// ---comparasiions operators---
+	bool operator<(const Fixed &toCompare) const;
+	bool operator>(const Fixed &toCompare) const;
+	bool operator<=(const Fixed &toCompare) const;
+	bool operator>=(const Fixed &toCompare) const;
+	bool operator==(const Fixed &toCompare) const;
+	bool operator!=(const Fixed &toCompare) const;
+	
+	// ---arithmetic operators---
+	
+
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &value);	
