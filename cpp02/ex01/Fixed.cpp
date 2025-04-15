@@ -4,6 +4,7 @@
 
 Fixed::Fixed()
 {
+	this->value = 0;
 	std::cout << "Fixed default constructor\n";
 }
 
