@@ -24,18 +24,18 @@ public:
 
 	// operator overloads
 	// ---comparasiions operators---
-	bool operator<(const Fixed& toCompare) const;
-	bool operator>(const Fixed& toCompare) const;
-	bool operator<=(const Fixed& toCompare) const;
-	bool operator>=(const Fixed& toCompare) const;
-	bool operator==(const Fixed& toCompare) const;
-	bool operator!=(const Fixed& toCompare) const;
+	bool operator<(const Fixed &toCompare) const;
+	bool operator>(const Fixed &toCompare) const;
+	bool operator<=(const Fixed &toCompare) const;
+	bool operator>=(const Fixed &toCompare) const;
+	bool operator==(const Fixed &toCompare) const;
+	bool operator!=(const Fixed &toCompare) const;
 	
 	// ---arithmetic operators---
-	Fixed operator+(const Fixed& other) const;
-	Fixed operator-(const Fixed& other) const;
-	Fixed operator*(const Fixed& other) const;
-	Fixed operator/(const Fixed& other) const;
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
 
 	// ---incrememt/decrement operators---
 	Fixed operator++(int); // a++
@@ -44,10 +44,10 @@ public:
 	Fixed operator--(void); // --a
 
 	// ---desired methods---
-	static Fixed& min(Fixed& a, Fixed& c);
-	static const Fixed& min(const Fixed& a, const Fixed& c);
-	static Fixed& max(Fixed& a, Fixed& c);
-	static const Fixed& max(const Fixed& a, const Fixed& c);
+	static Fixed &min(Fixed &a, Fixed &c);
+	static const Fixed &min(const Fixed &a, const Fixed &c);
+	static Fixed &max(Fixed &a, Fixed &c);
+	static const Fixed &max(const Fixed &a, const Fixed &c);
 
 };
 

@@ -72,7 +72,7 @@ std::ostream &operator<<(std::ostream &out, const Fixed &value)
 }
 
 // comparasion operators overloads
-bool Fixed::operator<(const Fixed& toCompare) const
+bool Fixed::operator<(const Fixed &toCompare) const
 {
 	if (this->value < toCompare.getRawBits())
 		return true;
@@ -80,7 +80,7 @@ bool Fixed::operator<(const Fixed& toCompare) const
 		return false;
 }
 
-bool Fixed::operator>(const Fixed& toCompare) const
+bool Fixed::operator>(const Fixed &toCompare) const
 {
 	if (this->value > toCompare.getRawBits())
 		return true;
@@ -88,7 +88,7 @@ bool Fixed::operator>(const Fixed& toCompare) const
 		return false;
 }
 
-bool Fixed::operator<=(const Fixed& toCompare) const
+bool Fixed::operator<=(const Fixed &toCompare) const
 {
 	if (this->value <= toCompare.getRawBits())
 		return true;
@@ -96,7 +96,7 @@ bool Fixed::operator<=(const Fixed& toCompare) const
 		return false;
 }
 
-bool Fixed::operator>=(const Fixed& toCompare) const
+bool Fixed::operator>=(const Fixed &toCompare) const
 {
 	if (this->value >= toCompare.getRawBits())
 		return true;
@@ -104,7 +104,15 @@ bool Fixed::operator>=(const Fixed& toCompare) const
 		return false;
 }
 
-bool Fixed::operator!=(const Fixed& toCompare) const
+bool Fixed::operator==(const Fixed &toCompare) const
+{
+	if (this->value == toCompare.getRawBits())
+		return true;
+	else
+		return false;
+}
+
+bool Fixed::operator!=(const Fixed &toCompare) const
 {
 	if (this->value != toCompare.getRawBits())
 		return true;
@@ -114,7 +122,7 @@ bool Fixed::operator!=(const Fixed& toCompare) const
 
 // arithmetic operators
 
-Fixed Fixed::operator+(const Fixed& other) const
+Fixed Fixed::operator+(const Fixed &other) const
 {
 	Fixed result;
 
@@ -122,7 +130,7 @@ Fixed Fixed::operator+(const Fixed& other) const
 	return result;
 }
 
-Fixed Fixed::operator-(const Fixed& other) const
+Fixed Fixed::operator-(const Fixed &other) const
 {
 	Fixed result;
 
@@ -130,7 +138,7 @@ Fixed Fixed::operator-(const Fixed& other) const
 	return result;
 }
 
-Fixed Fixed::operator*(const Fixed& other) const
+Fixed Fixed::operator*(const Fixed &other) const
 {
 	Fixed result;
 
@@ -138,7 +146,7 @@ Fixed Fixed::operator*(const Fixed& other) const
 	return result;
 }
 
-Fixed Fixed::operator/(const Fixed& other) const
+Fixed Fixed::operator/(const Fixed &other) const
 {
 	if (other.getRawBits() == 0)
 	{
@@ -182,28 +190,28 @@ Fixed Fixed::operator--(int)
 
 // desired methods
 
-Fixed& Fixed::min(Fixed& a, Fixed& b)
+Fixed &Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a < b)
 		return a;
 	return b;
 }
 
-const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a < b)
 		return a;
 	return b;
 }
 
-Fixed& Fixed::max(Fixed& a, Fixed& b)
+Fixed &Fixed::max(Fixed &a, Fixed &b)
 {
 	if (a > b)
 		return a;
 	return b;
 }
 
-const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
 {
 	if (a > b)
 		return a;

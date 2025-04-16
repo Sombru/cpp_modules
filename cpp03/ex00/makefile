@@ -1,5 +1,5 @@
 # Program name
-NAME = Point
+NAME = claping
 
 # Compiler
 CC    = c++
@@ -7,10 +7,8 @@ FLAGS = -g -std=c++98 -Wall -Wextra -Werror
 
 # Sources
 SRC = main.cpp \
-	  Fixed.cpp \
-	  Point.cpp \
-	  bsp.cpp
-
+	  ClapTrap.cpp
+	  
 # Objects
 OBJ_PATH = obj/
 OBJ 	 = $(SRC:.cpp=.o)

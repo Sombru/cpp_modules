@@ -1,40 +1,19 @@
 #include <iostream>
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void ) 
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+
+int main()
 {
-	{
-		Fixed a;
-		Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-		std::cout << a << std::endl;
-		std::cout << ++a << std::endl;
-		std::cout << a << std::endl;
-		std::cout << a++ << std::endl;
-		std::cout << a << std::endl;
-		std::cout << b << std::endl;
-		std::cout << Fixed::max( a, b ) << std::endl;
-	}
-	std::cout << "arithmetic operators\n";
+    Point a(0, 0);
+    Point b(10, 5);
+    Point c(0, 10);
 
-	Fixed a, b, c;
+    Point inside(5, 4);
+    Point outside(20, 20);
 
-	a = 4.1f;
-	b = 4;
-	c =	1.5f;
-	std::cout << (a * b) << '\n';
-	std::cout << (a + b) << '\n';
-	std::cout << (b - a) << '\n';
-	std::cout << (b / 0) << '\n';
+    std::cout << "Inside: " << bsp(a, b, c, inside) << '\n';   // (true)
+    std::cout << "Outside: " << bsp(a, b, c, outside) << '\n'; // (false)
 
-	std::cout << "comparasions operators\n";
-
-	std::cout << (a > b) << '\n';
-	std::cout << (a < b) << '\n';
-	std::cout << (a >= b) << '\n';
-	std::cout << (a <= b) << '\n';
-	std::cout << (a == b) << '\n';
-	std::cout << (a != b) << '\n';
-
-
-	return 0;
+    return 0;
 }
