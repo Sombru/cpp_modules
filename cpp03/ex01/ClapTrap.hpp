@@ -5,7 +5,7 @@
 
 class ClapTrap
 {
-private:
+protected:
 	const std::string _name; // probably const otherwise why = operator should change it?
 	unsigned int _hp;
 	unsigned int _mp;
@@ -30,7 +30,6 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	void check();
 };
 
 

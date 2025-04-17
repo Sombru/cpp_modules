@@ -1,29 +1,32 @@
 #include "ClapTrap.hpp"
 
+#define GURADS std::cout << "\n---------------------------------------------------------------\n\n" ;
+
 int main()
 {
-	// Create ClapTrap objects
 	ClapTrap Bob("Bob");
 	ClapTrap Dave("Dave");
 
-	// Clone a ClapTrap
 	ClapTrap DaveClone(Dave);
 
-	// Test attack
+	GURADS
 	Bob.attack("Dave");
 	Dave.takeDamage(3);
 
-	// Test repair
+	Dave.check();
+
 	Dave.beRepaired(5);
 
-	// Test cloning behavior
+	Dave.check();
+
 	DaveClone.attack("Bob");
 	Bob.takeDamage(2);
 
-	// Test assignment operator
+	GURADS
 	ClapTrap Alice("Alice");
 	Alice = Bob;
 	Alice.attack("DaveClone");
+
 
 	Bob.takeDamage(15); 
 	Bob.beRepaired(10);
