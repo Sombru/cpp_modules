@@ -1,12 +1,12 @@
 #include "ScavTrap.hpp"
 
-
 ScavTrap::ScavTrap(std::string name)
 : ClapTrap(name)
 {
 	_hp = 100;
 	_mp = 50;
 	_dmg = 20;
+	
 	std::cout << "ScavTrap(not ClapTrap) constructor\n";
 }
 
@@ -31,15 +31,13 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap named " << _name << " is destroyed\n";
-
+	std::cout << "ScavTrap destructor\n";
 }
 
 void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap is now gatekeeper... this changes nothing its jut how it is now\n";
 }
-
 
 void ScavTrap::attack(const std::string &target)
 {

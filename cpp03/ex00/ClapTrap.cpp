@@ -90,6 +90,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 			  << " of hp, he has" << _hp
 			  << " hp now\n";
 }
+
 void ClapTrap::check()
 {
 	std::cout << "ClapTrap Stats:\n"

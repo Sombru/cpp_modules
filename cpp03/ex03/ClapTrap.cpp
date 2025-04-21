@@ -87,7 +87,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	set_hp(_hp + amount);
 	std::cout << "ClapTrap " << get_name()
 			  << " heals " << amount
-			  << " of hp, he has" << _hp
+			  << " of hp, he has " << _hp
 			  << " hp now\n";
 }
 
