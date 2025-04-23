@@ -1,5 +1,5 @@
 # Program name
-NAME = animal_planet
+NAME = head_empty
 
 # Compiler
 CC    = c++
@@ -11,7 +11,8 @@ SRC = main.cpp \
 	  Dog.cpp \
 	  Animal.cpp \
 	  WrongCat.cpp \
-	  WrongAnimal.cpp
+	  WrongAnimal.cpp \
+	  Brain.cpp
 	
 	  
 # Objects
