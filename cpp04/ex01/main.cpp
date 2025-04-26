@@ -20,5 +20,5 @@ int main()
 
 	Cat b(a);
 
-	std::cout << b.getBrain()->getIdea(4) << '\n';
+	std::cout << a.getBrain()->getIdea(4) << '\n';
 }

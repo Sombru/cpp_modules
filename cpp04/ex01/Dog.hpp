@@ -8,13 +8,15 @@ class Dog
 : public virtual Animal
 {
 private:
-	Brain* brain; 
+	Brain* brain;
+
 public:
 	Dog();
 	Dog(const Dog &copy);
 	Dog &operator=(const Dog & copy);
 	~Dog();
 
+	Brain* getBrain();
 	void makeSound() const;
 };
 

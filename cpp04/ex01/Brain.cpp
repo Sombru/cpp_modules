@@ -1,6 +1,7 @@
 #include "Brain.hpp"
 
 Brain::Brain()
+: has_ideas(false)
 {
 	std::cout << "Brain constructor\n";
 }
@@ -34,32 +35,38 @@ Brain::~Brain()
 
 std::string Brain::getIdea(int index) const
 {
-    if (index < 0 || index >= 100)
+	// std::cout << "brain idea: " << ideas[index] << '\n';
+    if (index < 0 || index >= 99)
     {
-        std::cerr << "Invalid index: " << index << ". Returning a random idea.\n";
-        index = std::rand() % 100;
+        std::cerr << "Invalid index\n";
     }
     return this->ideas[index];
 }
 
+void Brain::setIdea(std::string idea, int index)
+{
+	this->ideas[index] = idea;
+}
+
 void Brain::fillWithRandomIdeas()
 {
-    const std::string words[] = {
+    const std::string words[26] = {
         "apple", "banana", "cherry", "dog", "elephant", "flower", "guitar", "house", "island", "jungle",
         "kite", "lemon", "mountain", "notebook", "ocean", "piano", "queen", "river", "sun", "tree",
         "umbrella", "violin", "waterfall", "xylophone", "yacht", "zebra"
     };
-    const int wordCount = sizeof(words) / sizeof(words[0]);
 
-    // Seed the random number generator
-    std::srand(std::time(0));
-
-    for (int i = 0; i < 100; i++)
-    {
-        // Generate a random index to pick a word
-        int randomIndex = std::rand() % wordCount;
-        ideas[i] = words[randomIndex];
-    }
-
+	int i = 0;
+	int k = 0;
+	while (i < 99)
+	{
+		if (k > 25)
+			k = 0;
+		ideas[i] = words[k];
+		i++;
+		k++;
+	}
+	has_ideas = true;
+	// std::cout << "brain idea: " << ideas[4] << '\n';
     std::cout << "Brain filled with random ideas.\n";
 }

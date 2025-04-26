@@ -7,15 +7,30 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat &copy)
-: Animal(copy.getType())
+: Animal(copy.getType()), brain(new Brain)
 {
+	if (copy.brain->has_ideas == true)
+	{
+		for (int i = 0; i < 100; i++)
+			brain->setIdea(copy.brain->getIdea(i), i);
+	}
 	std::cout << "Cat copy constructor\n";
 }
 
 Cat &Cat::operator=(const Cat &copy)
 {
-	Animal::mType = copy.getType();
-	return *this;
+    if (this != &copy)
+    {
+        Animal::mType = copy.getType();
+        delete brain;
+        brain = new Brain();
+        if (copy.brain->has_ideas == true)
+        {
+            for (int i = 0; i < 100; i++)
+                brain->setIdea(copy.brain->getIdea(i), i);
+        }
+    }
+    return *this;
 }
 
 Cat::~Cat()

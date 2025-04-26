@@ -17,8 +17,11 @@ public:
 	Brain &operator=(const Brain &copy);
 	~Brain();
 
+	void setIdea(std::string idea, int index);
 	std::string getIdea(int index) const;
 	void fillWithRandomIdeas();
+
+	bool has_ideas;
 };
 
 
