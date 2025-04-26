@@ -18,7 +18,18 @@ int main()
 	Cat a;
 	a.getBrain()->fillWithRandomIdeas();
 
+	a.getBrain()->setIdea("skibidi toilet", 4);
 	Cat b(a);
 
 	std::cout << a.getBrain()->getIdea(4) << '\n';
+
+	// std::cout << "==== Aniaml Brain's tests ====\n";
+
+	// Animal* Animals[50];
+	// for (int i = 0; i < 25; i++)
+	//   Animals[i] = new Cat();
+	// for (int i = 25; i < 50; i++)
+	//   Animals[i] = new Dog();
+	// for (int i = 0; i < 50; i++)
+	//   delete Animals[i];
 }
