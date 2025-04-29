@@ -3,20 +3,20 @@
 Character::Character(std::string name)
 	: mName(name), has_inventory(false)
 {
-	for (int i = 0; i < SIZE; ++i)
-		mInventory[i] = nullptr;
+	for (int i = 0; i < SIZE; i++)
+		mInventory[i] = NULL;
 	std::cout << "Character constructor called for " << mName << '\n';
 }
 
 Character::Character(const Character &copy)
 	: mName(copy.mName), has_inventory(copy.has_inventory)
 {
-	for (int i = 0; i < SIZE; ++i)
+	for (int i = 0; i < SIZE; i++)
 	{
 		if (copy.mInventory[i])
 			mInventory[i] = copy.mInventory[i]->clone(); // Deep copy
 		else
-			mInventory[i] = nullptr;
+			mInventory[i] = NULL;
 	}
 	std::cout << "Character copy constructor called for " << mName << '\n';
 }
@@ -28,13 +28,13 @@ Character &Character::operator=(const Character &other)
 		mName = other.mName;
 		has_inventory = other.has_inventory;
 
-		for (int i = 0; i < SIZE; ++i)
+		for (int i = 0; i < SIZE; i++)
 		{
 			delete mInventory[i];
-			mInventory[i] = nullptr;
+			mInventory[i] = NULL;
 		}
 
-		for (int i = 0; i < SIZE; ++i)
+		for (int i = 0; i < SIZE; i++)
 		{
 			if (other.mInventory[i])
 				mInventory[i] = other.mInventory[i]->clone();
@@ -46,9 +46,14 @@ Character &Character::operator=(const Character &other)
 
 Character::~Character()
 {
-	for (int i = 0; i < SIZE; ++i)
+	for (int i = 0; i < SIZE; i++)
 		delete mInventory[i];
 	std::cout << "Character destructor called for " << mName << '\n';
+}
+
+std::string const &Character::getName() const
+{
+	return mName;
 }
 
 void Character::equip(AMateria *m)
@@ -56,7 +61,7 @@ void Character::equip(AMateria *m)
 	if (!m)
 		return;
 
-	for (int i = 0; i < SIZE; ++i)
+	for (int i = 0; i < SIZE; i++)
 	{
 		if (!mInventory[i])
 		{
@@ -77,11 +82,11 @@ void Character::unequip(int idx)
 		return;
 	}
 
-	mInventory[idx] = nullptr;
+	mInventory[idx] = NULL;
 	std::cout << "Unequipped slot " << idx << '\n';
 
 	has_inventory = false;
-	for (int i = 0; i < SIZE; ++i)
+	for (int i = 0; i < SIZE; i++)
 	{
 		if (mInventory[i])
 		{
