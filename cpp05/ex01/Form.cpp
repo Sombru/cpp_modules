@@ -7,11 +7,19 @@ Form::Form(t_attributes attributes)
   mGradeToSign(attributes.GradeToSign),
   mGradeToExecute(attributes.GradeToExecute)
 {
-	if (mGradeToSign < GRADE_MAX || mGradeToExecute < GRADE_MAX)
-		throw GradeTooHighException();
-	if (mGradeToSign > GRADE_MIN || mGradeToExecute > GRADE_MIN)
-		throw GradeTooLowException();
-	std::cout << "Form constructor: " << mName << '\n';
+	try
+	{
+		if (mGradeToSign < GRADE_MAX || mGradeToExecute < GRADE_MAX)
+			throw GradeTooHighException();
+		if (mGradeToSign > GRADE_MIN || mGradeToExecute > GRADE_MIN)
+			throw GradeTooLowException();
+		std::cout << "Form constructor: " << mName << '\n';
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 }
 
 Form::Form(const Form &copy)
@@ -48,31 +56,46 @@ bool Form::getSign() const
 	return this->mSigned;
 }
 
-const int Form::getGradeToSign() const
+int Form::getGradeToSign() const
 {
 	return this->mGradeToSign;
 }
 
-const int Form::getGradeToExecute() const
+int Form::getGradeToExecute() const
 {
 	return this->mGradeToExecute;
 }
 
 bool Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (bureaucrat.getGrade() > mGradeToSign)
+	try
 	{
-		throw GradeTooLowException();
-		return EXIT_FAILURE;
+		if (bureaucrat.getGrade() > mGradeToSign)
+			throw GradeTooLowException();
+		if (this->getSign() == true)
+			throw FormAlreadySignedException();
+		
+		mSigned = true;
+		std::cout << bureaucrat << " signed " << *this << '\n';
+
+		return EXIT_SUCCESS;
 	}
-	mSigned = true;
-	return EXIT_SUCCESS;
+	catch (const std::exception &e)
+	{
+		std::cout << bureaucrat << " couldn't sign " << *this << " because " << e.what() << '\n';
+		return EXIT_FAILURE;
+	}	
 }
 
 std::ostream &operator<<(std::ostream &out, const Form &form)
 {
-	out << "Form: " << form.getName() << " signed: " << form.getSign()
-		<< ", grade to sign: " << form.getGradeToSign()
+	out << "[Form: " << form.getName()
+		<< " signed: " ;
+		if (form.getSign() == true)
+			std::cout << "YES";
+		else
+			std::cout << "NO";
+		std::cout << ", grade to sign: " << form.getGradeToSign()
 		<< ", grade to execute: " << form.getGradeToExecute() << "]";
 	return out;
 }

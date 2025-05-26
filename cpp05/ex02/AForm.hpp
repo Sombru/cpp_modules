@@ -1,5 +1,5 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AForm_HPP
+# define AForm_HPP
 
 #include <string>
 #include "Bureaucrat.hpp"
@@ -14,7 +14,7 @@ typedef struct s_attributes
 }			t_attributes;
 
 
-class Form
+class AForm
 {
 private:
 	const std::string mName;
@@ -23,10 +23,10 @@ private:
 	const int mGradeToExecute;
 
 public:
-	Form(t_attributes atributes);
-	Form(const Form &copy);
-	Form &operator=(const Form &other);
-	~Form();
+	AForm(t_attributes atributes);
+	AForm(const AForm &copy);
+	AForm &operator=(const AForm &other);
+	virtual ~AForm() = 0;
 
 	std::string getName() const;
 	bool getSign() const;
@@ -55,17 +55,17 @@ public:
 		}
 	};
 
-	class FormAlreadySignedException 
+	class AFormAlreadySignedException 
 	: public std::exception
 	{
 	public:
 		const char *what() const throw()
 		{
-			return "Form already signed!";
+			return "AForm already signed!";
 		}
 	};
 };
 
-std::ostream &operator<<(std::ostream &out, const Form &form);
+std::ostream &operator<<(std::ostream &out, const AForm &AForm);
 
 #endif

@@ -1,5 +1,5 @@
 # Program name
-NAME = busines_casual
+NAME = ice_n_cure
 
 # Compiler
 CC    = c++
@@ -7,9 +7,13 @@ FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow
 
 # Sources
 SRC = main.cpp \
-	  Bureaucrat.cpp \
-	  Form.cpp
+	  MateriaSource.cpp \
+	  Ice.cpp \
+	  Cure.cpp \
+	  Character.cpp \
+	  AMateria.cpp \
 	
+	  
 # Objects
 OBJ_PATH = obj/
 OBJ 	 = $(SRC:.cpp=.o)

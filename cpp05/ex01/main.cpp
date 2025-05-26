@@ -1,36 +1,45 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	Bureaucrat b1(1, "Bob");
-	
-	std::cout << b1 << '\n';
+	// form attributes
+	t_attributes attr1 = {"FormA", false, 54846, 30};
+	t_attributes attr2 = {"FormB", false, 1, 1};
+	t_attributes attr3 = {"FormC", false, 150, 150};
 
-	Bureaucrat b2(45, "Jhon");
-	Bureaucrat b3(15, "Mike");
+	Form formA(attr1);
+	Form formB(attr2);
+	Form formC(attr3);
 
-	std::cout << b1 << " || " << b2 << '\n';
+	Bureaucrat bob(75, "Bob");
+	Bureaucrat alice(1, "Alice");
+	Bureaucrat tom(150, "Tom");
 
-	b1.setGrade(69);
+	std::cout << "\n--- Bureaucrats ---\n";
+	std::cout << bob << '\n';
+	std::cout << alice << '\n';
+	std::cout << tom << '\n';
 
-	std::cout << b1 << " || " << b2 << '\n';
+	std::cout << "\n--- Forms ---\n";
+	std::cout << formA << '\n';
+	std::cout << formB << '\n';
+	std::cout << formC << '\n';
 
-	b2 = b3;
+	std::cout << "\n--- Signing attempts ---\n";
+	bob.signForm(formA);   // Should fail (grade too low)
+	tom.signForm(formA);   // Should fail (grade too low)
+	alice.signForm(formB); // Should succeed
+	tom.signForm(formB);   // Should fail (grade too low)
+	bob.signForm(formC);   // Should fail (grade too low)
+	tom.signForm(formC);   // Should succeed
 
-	std::cout << b3 << " || " << b2 << '\n';
-
-	
+	return 0;
 }
 
+// Norm for exceptions in C++ OOP projects like this:
 
-	// int i = 0;
-
-	// try
-	// {
-	// 	if (i == 0)
-	// 		throw i;
-	// }
-	// catch (int i)
-	// {
-	// 	std::cout << i << std::endl;
-	// }
+// Handle the exception locally (e.g., print an error message, log the failure, etc.).
+// Allow the program to continue running so other operations;
+// Only terminate if the exception is truly unrecoverable 
+// and makes further execution unsafe or meaningless (e.g., failed to allocate critical resources, corrupted state)

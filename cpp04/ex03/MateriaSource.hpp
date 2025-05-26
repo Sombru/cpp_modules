@@ -9,7 +9,7 @@ class MateriaSource
 : public IMateriaSource
 {
 private:
-	AMateria *learnedMAterias[MATERIA_SIZE];
+	AMateria *learnedMaterias[MATERIA_SIZE];
 
 public:
 	MateriaSource(/* args */);

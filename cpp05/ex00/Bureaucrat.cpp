@@ -15,7 +15,6 @@ Bureaucrat::Bureaucrat(int grade, const std::string name)
 	catch (const std::exception &e) // catch error, this code will be executed upon catching 
 	{
 		std::cout << "error: " << e.what() << '\n';
-		return;
 	}
 
 	std::cout << "Bureaucrat constructor with grade ";
@@ -64,7 +63,6 @@ void Bureaucrat::setGrade(int grade)
 	catch (const std::exception &e) // catch error, this code will be executed upon catching 
 	{
 		std::cout << "error: " << e.what() << '\n';
-		return;
 	}
 }
 

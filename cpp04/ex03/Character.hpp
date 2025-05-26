@@ -2,6 +2,7 @@
 # define CHARACTER_HPP
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 #define SIZE 4
 
 class Character
@@ -19,7 +20,7 @@ public:
 
 	bool has_inventory;
 	std::string const &getName() const;
-	void equip(AMateria *m);
+	void equip(AMateria *materia);
 	void unequip(int idx);
 	void use(int idx, ICharacter &target);
 

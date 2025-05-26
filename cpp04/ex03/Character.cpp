@@ -56,22 +56,22 @@ std::string const &Character::getName() const
 	return mName;
 }
 
-void Character::equip(AMateria *m)
+void Character::equip(AMateria *materia)
 {
-	if (!m)
+	if (!materia)
 		return;
 
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i <= 3; i++)
 	{
 		if (!mInventory[i])
 		{
-			mInventory[i] = m;
+			mInventory[i] = materia;
 			has_inventory = true;
-			std::cout << "Equipped " << m->getType() << " in slot " << i << '\n';
+			std::cout << "Equipped " << materia->getType() << " in slot " << i << '\n';
 			return;
 		}
 	}
-	std::cout << "Inventory full, cannot equip " << m->getType() << '\n';
+	std::cout << "Inventory full, cannot equip " << materia->getType() << '\n';
 }
 
 void Character::unequip(int idx)

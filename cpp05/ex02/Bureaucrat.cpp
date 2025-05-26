@@ -66,9 +66,9 @@ void Bureaucrat::setGrade(int grade)
 	}
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signAForm(AForm &AForm)
 {
-	form.beSigned(*this);
+	AForm.beSigned(*this);
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat)

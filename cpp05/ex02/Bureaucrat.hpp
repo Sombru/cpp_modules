@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept> // For std::exception
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define GRADE_MIN 150
 #define GRADE_MAX 1
@@ -12,7 +12,7 @@
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -31,7 +31,7 @@ public:
 
 	void setGrade(int grade);
 
-	void signForm(Form &form);
+	void signAForm(AForm &AForm);
 
 	class GradeTooHighException 
 	: public std::exception // inherit exception class

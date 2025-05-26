@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include "ICharacter.hpp"
+class ICharacter;
 
 class AMateria
 {
@@ -16,7 +18,7 @@ public:
 
 	virtual AMateria* clone() const = 0;
 	virtual void use(ICharacter& target);
-	~AMateria();
+	virtual ~AMateria();
 
 };
 

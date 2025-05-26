@@ -8,7 +8,8 @@ FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow
 # Sources
 SRC = main.cpp \
 	  Bureaucrat.cpp \
-	  Form.cpp
+	  AForm.cpp \
+	  PresidentialPardonForm.cpp
 	
 # Objects
 OBJ_PATH = obj/
