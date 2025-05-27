@@ -1,48 +1,48 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
-	// // AForm attributes
-	// t_attributes attr1 = {"AFormA", false, 54846, 30};
-	// t_attributes attr2 = {"AFormB", false, 1, 1};
-	// t_attributes attr3 = {"AFormC", false, 150, 150};
+	Bureaucrat alice(1, "Alice");	   // Highest grade
+	Bureaucrat bob(140, "Bob");		   // Low grade
+	Bureaucrat charlie(50, "Charlie"); // Medium grade
 
-	// AForm AFormA(attr1);
-	// AForm AFormB(attr2);
-	// AForm AFormC(attr3);
+	PresidentialPardonForm pardon("Arthur Dent");
+	ShrubberyCreationForm shrub("garden");
+	RobotomyRequestForm robo("Marvin");
 
-	// Bureaucrat bob(75, "Bob");
-	// Bureaucrat alice(1, "Alice");
-	// Bureaucrat tom(150, "Tom");
+	std::cout << "\n--- Signing Forms ---\n";
+	alice.signAForm(pardon); // Should succeed
+	bob.signAForm(shrub);	 // Should succeed
+	charlie.signAForm(robo); // Should succeed
 
-	// std::cout << "\n--- Bureaucrats ---\n";
-	// std::cout << bob << '\n';
-	// std::cout << alice << '\n';
-	// std::cout << tom << '\n';
+	// Try to sign again (should fail: already signed)
+	alice.signAForm(pardon);
 
-	// std::cout << "\n--- AForms ---\n";
-	// std::cout << AFormA << '\n';
-	// std::cout << AFormB << '\n';
-	// std::cout << AFormC << '\n';
+	// Try to sign with too low grade
+	bob.signAForm(pardon);
 
-	// std::cout << "\n--- Signing attempts ---\n";
-	// bob.signAForm(AFormA);   // Should fail (grade too low)
-	// tom.signAForm(AFormA);   // Should fail (grade too low)
-	// alice.signAForm(AFormB); // Should succeed
-	// tom.signAForm(AFormB);   // Should fail (grade too low)
-	// bob.signAForm(AFormC);   // Should fail (grade too low)
-	// tom.signAForm(AFormC);   // Should succeed
+	std::cout << "\n--- Executing Forms ---\n";
+	alice.executeForm(pardon); // Should succeed
+	bob.executeForm(shrub);
+	charlie.executeForm(robo);
 
-	PresidentialPardonForm P_Form("home");
+	bob.executeForm(pardon);
 
+	ShrubberyCreationForm shrub2("backyard");
+	bob.executeForm(shrub2);
+
+	alice.executeForm(shrub);
+	alice.executeForm(robo);
+	// srand(time(0));
+
+	// std::cout << (std::rand()) << '\n';
+	std::cout << "\n--- End of tests ---\n";
 	return 0;
 }
-
-// Norm for exceptions in C++ OOP projects like this:
-
-// Handle the exception locally (e.g., print an error message, log the failure, etc.).
-// Allow the program to continue running so other operations;
-// Only terminate if the exception is truly unrecoverable 
-// and makes further execution unsafe or meaningless (e.g., failed to allocate critical resources, corrupted state)

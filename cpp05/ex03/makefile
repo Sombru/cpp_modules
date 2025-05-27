@@ -12,6 +12,7 @@ SRC = main.cpp \
 	  PresidentialPardonForm.cpp \
 	  RobotomyRequestForm.cpp \
 	  ShrubberyCreationForm.cpp \
+	  Intern.cpp
 	
 # Objects
 OBJ_PATH = obj/

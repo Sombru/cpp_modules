@@ -4,7 +4,7 @@
 int main()
 {
 	// form attributes
-	t_attributes attr1 = {"FormA", false, 54846, 30};
+	t_attributes attr1 = {"FormA", false, 54, 30};
 	t_attributes attr2 = {"FormB", false, 1, 1};
 	t_attributes attr3 = {"FormC", false, 150, 150};
 

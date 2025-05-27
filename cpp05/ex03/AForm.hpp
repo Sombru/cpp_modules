@@ -26,7 +26,7 @@ public:
 	AForm(t_attributes atributes);
 	AForm(const AForm &copy);
 	AForm &operator=(const AForm &other);
-	~AForm();
+	virtual ~AForm();
 
 	std::string getName() const;
 	bool getSign() const;
