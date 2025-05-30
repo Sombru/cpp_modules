@@ -15,7 +15,7 @@
 
 ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &other) {(void)(other);}
+ScalarConverter::ScalarConverter(const ScalarConverter &other) { (void)(other); }
 
 ScalarConverter::~ScalarConverter() {}
 
@@ -26,6 +26,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	return (*this);
 }
 
+// nan == not a number
+// inf == infinity 
 static inline bool isPseudoLiteral(const std::string &s)
 {
 	return (s == "nan" || s == "nanf" ||
@@ -40,15 +42,13 @@ void ScalarConverter::convert(const std::string &param)
 	bool isCharLiteral = false;
 	bool isImpossible = false;
 
-	// Handle char literal (single printable char not digit)
 	if (param.length() == 1 && !std::isdigit(param[0]))
 	{
 		value = static_cast<double>(param[0]);
 		isCharLiteral = true;
 	}
-	else if (isPseudoLiteral(param))
+	else if (isPseudoLiteral(param)) // handle nan
 	{
-		// Handle nan, inf, etc.
 		if (param.find('f') != std::string::npos)
 			value = std::strtof(param.c_str(), NULL);
 		else
@@ -57,45 +57,37 @@ void ScalarConverter::convert(const std::string &param)
 	}
 	else
 	{
-		char *endptr = NULL;
-		errno = 0;
+		char *endptr = NULL; // to check if it last char is 'f'
 		value = std::strtod(param.c_str(), &endptr);
-		if (errno || (endptr && *endptr && *endptr != 'f'))
+		if (endptr && *endptr && *endptr != 'f')
 		{
 			isImpossible = true;
 		}
 	}
 
-	// CHAR
-	std::cout << "char: ";
-	if (isImpossible || std::isnan(value) || value < 0 || value > 127)
-	{
+	std::cout << "char: "; // CHAR handler
+	if (isImpossible || isascii(value) == false)
 		std::cout << "impossible\n";
-	}
-	else if (!std::isprint(static_cast<int>(value)))
-	{
-		std::cout << "Non displayable\n";
-	}
+	else if (isprint(value) == false)
+		std::cout << "not displayable\n";
 	else
 	{
-		std::cout << "'" << static_cast<char>(value) << "'\n";
+		std::cout << static_cast<char>(value) << '\n';
 	}
 
-	// INT
-	std::cout << "int: ";
+	std::cout << "int: "; // INT handler
 	if (isImpossible || std::isnan(value) || value < INT_MIN || value > INT_MAX)
-	{
 		std::cout << "impossible\n";
-	}
 	else
 	{
-		std::cout << static_cast<int>(value) << "\n";
+		std::cout << static_cast<int>(value) << '\n';
 	}
 
-	// FLOAT
-	std::cout << "float: ";
+	std::cout << "float: "; //FLOAT handler
 	std::cout << std::fixed << std::setprecision(1);
-	if (isPseudoLiteral(param))
+	if (isImpossible || std::isnan(value) || value < INT_MIN || value > INT_MAX)
+		std::cout << "impossible\n";
+	else if (isPseudoLiteral(param))
 	{
 		if (param == "nan" || param == "nanf")
 			std::cout << "nanf\n";
@@ -109,9 +101,10 @@ void ScalarConverter::convert(const std::string &param)
 		std::cout << static_cast<float>(value) << "f\n";
 	}
 
-	// DOUBLE
-	std::cout << "double: ";
-	if (isPseudoLiteral(param))
+	std::cout << "double: "; // DOUBLE handler
+	if (isImpossible || std::isnan(value) || value < INT_MIN || value > INT_MAX)
+		std::cout << "impossible\n";
+	else if (isPseudoLiteral(param))
 	{
 		if (param == "nan" || param == "nanf")
 			std::cout << "nan\n";
