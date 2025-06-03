@@ -6,11 +6,11 @@ CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow 
 
 # Sources
-SRC = main.cpp \
+SRC = main.cpp
 
 # Objects
 OBJ_PATH = obj/
-OBJ 	 = $(SRC:.cpp=.o)
+OBJ 	 = $(SRC:.cpp=.o) 
 OBJS	 = $(addprefix $(OBJ_PATH), $(OBJ))
 
 # Targets
