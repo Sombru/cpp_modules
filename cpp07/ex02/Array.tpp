@@ -4,7 +4,7 @@ template<typename T>
 Array<T>::Array()
 : mSize(0)
 {
-
+	this->mArray = new T[mSize];
 }
 
 template<typename T> 
@@ -28,14 +28,15 @@ Array<T>::Array(const Array &other)
 template<typename T> 
 Array<T> &Array<T>::operator=(const Array &other)
 {
-	if (*this == &other)
+	if (this == &other)
 		return *this;
-	delete[] this->mArray;
+	if (this->mArray)
+		delete[] this->mArray;
 	this->mArray = new T[other.getSize()];
 	mSize = other.getSize();
 	for (unsigned int i = 0; i < mSize; i++)
 	{
-		this->mArray[i] == other.mArray[i];
+		this->mArray[i] = other.mArray[i];
 	}
 	return *this;
 }
