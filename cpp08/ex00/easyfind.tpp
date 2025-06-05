@@ -11,8 +11,18 @@
 #include <iostream>
 #include <vector>
 
-template<typename T>
-T easyfind(T container, int i)
+template <typename T>
+void easyfind(T container, int i)
 {
-	std::vector
+	typename T::iterator it;
+
+	it = std::find(container.begin(), container.end(), i);
+	if (it == container.end())
+	{
+		(std::cerr << "No value in that possition\n");
+		return ;
+	}
+	else
+		std::cout << "Found the value: " << i << " in the position > "
+				  << std::distance(container.begin(), it) << '\n';
 }
