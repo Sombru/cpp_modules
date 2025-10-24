@@ -12,7 +12,8 @@ class Span
 private:
 	unsigned int m_spanSize;
 	int *data;
-	bool reset;	
+	bool reset;	// keep track of numbers to add
+
 public:
 	Span();
 	Span(unsigned int N);
@@ -25,6 +26,7 @@ public:
 	unsigned int shortestSpan() const;
 	unsigned int longestSpan() const;
 	void fillWithRandomNumbers();
+
 };
 
 #endif

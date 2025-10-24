@@ -1,5 +1,5 @@
 # Program name
-NAME = containers
+NAME = span
 
 # Compiler
 CC    = c++

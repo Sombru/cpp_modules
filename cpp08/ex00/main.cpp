@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 #include "easyfind.tpp"
+#include <set>
 
 // https://www.youtube.com/watch?v=Xx-NcqmveDc good vid
 int main()
@@ -19,5 +20,13 @@ int main()
 	{
 		std::cout << *it << '\n';
 	}
-	easyfind(numbers, 10);
+	std::cout << "Found the value: " << easyfind(numbers, 10) << "\n";
+
+	std::set<int> set;
+
+	set.insert(4);
+	set.insert(4);
+	set.insert(8);
+	std::cout << "Found the value: " << easyfind(set, 7) << "\n";
+
 }

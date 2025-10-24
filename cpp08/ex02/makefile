@@ -1,12 +1,12 @@
 # Program name
-NAME = ezfind
+NAME = mutated_abomination
 
 # Compiler
 CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow 
 
 # Sources
-SRC = main.cpp 
+SRC = main.cpp MutantStack.cpp
 
 # Objects
 OBJ_PATH = obj/

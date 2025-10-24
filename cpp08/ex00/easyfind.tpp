@@ -12,17 +12,12 @@
 #include <vector>
 
 template <typename T>
-void easyfind(T container, int i)
+int easyfind(T container, int i)
 {
 	typename T::iterator it;
 
 	it = std::find(container.begin(), container.end(), i);
 	if (it == container.end())
-	{
-		(std::cerr << "No value in that possition\n");
-		return ;
-	}
-	else
-		std::cout << "Found the value: " << i << " in the position > "
-				  << std::distance(container.begin(), it) << '\n';
+		throw std::out_of_range("nuh uh");
+	return *it;	
 }
