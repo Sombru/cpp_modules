@@ -24,11 +24,15 @@ public:
 		T *operator->() const;	  // member access
 		iterator &operator++();	  // prefix ++
 		iterator operator++(int); // postfix ++
-		bool operator==(const iterator &other);
-		bool operator!=(const iterator &other);
+		iterator &operator--();	  // prefix --
+		iterator operator--(int); // postfix --
+		bool operator==(const iterator &other) const;
+		bool operator!=(const iterator &other) const;
 	};
 
 	// --- begin/end ---
 	iterator begin();
 	iterator end();
 };
+
+#include "MutantStack.tpp"

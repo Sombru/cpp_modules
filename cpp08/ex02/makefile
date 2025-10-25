@@ -6,7 +6,7 @@ CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow 
 
 # Sources
-SRC = main.cpp MutantStack.cpp
+SRC = main.cpp 
 
 # Objects
 OBJ_PATH = obj/
