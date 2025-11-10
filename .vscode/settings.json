@@ -11,6 +11,8 @@
 		"span": "cpp",
 		"stack": "cpp",
 		"atomic": "cpp",
-		"iterator": "cpp"
+		"iterator": "cpp",
+		"iosfwd": "cpp",
+		"iostream": "cpp"
 	}
 }
