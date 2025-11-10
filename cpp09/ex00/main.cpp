@@ -5,7 +5,9 @@ int main()
 	BitcoinExchange b;
 
 	if (b.readData("data.csv"))
-		b.printError("could not read \"data.csv\" file\n");
+		b.logError("could not read \"data.csv\" file\n");
 	if (b.readInput("input.txt"))
-		b.printError("could not read \"input.txt\" file\n");
+		b.logError("could not read \"input.txt\" file\n");
+	
+	if (b.parseInput())
 }

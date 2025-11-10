@@ -5,12 +5,16 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include <map>
+#include <ctime>
 
 class BitcoinExchange
 {
 private:
 	std::string m_data;
 	std::string m_input;
+
+	std::map<std::string, float> m_input_map; 
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &other);
@@ -20,6 +24,10 @@ public:
 	int readData(const std::string &path);
 	int readInput(const std::string &path);
 
-	int printError(const std::string &what) const;
+	int logError(const std::string &what) const;
+	int logDebug(const std::string &what) const;
+
+	bool isValidDate(const std::string &date_str);
+	int parseInput();
 };
 
