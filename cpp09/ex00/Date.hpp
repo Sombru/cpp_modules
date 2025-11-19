@@ -1,9 +1,23 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <ctime>
 #include <iomanip>
 #include <sstream>
 #include <cstdio>
+
+
+class Date
+{
+private:
+	bool isLeapYear(int year);
+	int daysInMonth(int year, int month);
+
+public:
+	Date();
+	~Date();
+};
+
 
 // need to make funct to parse date into time(int) and back(str)
 
