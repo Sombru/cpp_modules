@@ -3,67 +3,64 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <cstdio>
 
-// neet to make funct to parse date into time(int) and back(str)
+// need to make funct to parse date into time(int) and back(str)
 
 std::time_t parse_date_to_time_t(const std::string &date_str)
 {
+	int year = 0, month = 0, day = 0;
+	if (std::sscanf(date_str.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
+		return (std::time_t)-1;
+
+	if (month < 1 || month > 12 || day < 1 || day > 31)
+		return (std::time_t)-1;
+
 	std::tm tm = {};
-	std::stringstream ss(date_str);
-
-	ss >> tm.tm_year; // year ("2003")
-	ss >> tm.tm_mon; // month ("-01")
-	ss >> tm.tm_mday; // dat ("-09")
-
-	if (!ss)
-		return -1;
-	tm.tm_mon *= -1;
-	tm.tm_mday *= -1;
-
-	tm.tm_year -= 1900; // years since 1900
-	tm.tm_mon -= 1;		// months since January [0,11]
-	// std::cout << "year: " << tm.tm_year << '\n';
-	// std::cout << "month: " << tm.tm_mon << '\n';
-	// std::cout << "day: " << tm.tm_mday << '\n';
+	tm.tm_year = year - 1900; // years since 1900
+	tm.tm_mon = month - 1;    // months since January [0,11]
+	tm.tm_mday = day;
+	tm.tm_hour = 0;
+	tm.tm_min = 0;
+	tm.tm_sec = 0;
 
 	// mktime interprets tm as local time
 	std::time_t t = std::mktime(&tm);
-	if (t == -1)
-		return -1;
-	// std::cout << "year: " << tm.tm_year << '\n';
-	// std::cout << "month: " << tm.tm_mon << '\n';
-	// std::cout << "day: " << tm.tm_mday << '\n';
+	if (t == (std::time_t)-1)
+		return (std::time_t)-1;
+
 
 	// Now recheck to ensure mktime didn't normalize the date (like Feb 30 -> Mar 2)
 	std::tm tm_check = *std::localtime(&t);
 	if (tm_check.tm_year != tm.tm_year ||
 		tm_check.tm_mon != tm.tm_mon ||
 		tm_check.tm_mday != tm.tm_mday)
-		return -1;
+		return (std::time_t)-1;
 
 	return t;
 }
 
 std::string time_t_to_string(std::time_t t)
 {
-	std::cout << t << '\n';
+	if (t == (std::time_t)-1)
+		return std::string("Bad timestamp");
+
 	std::tm tm = *std::localtime(&t); // or std::gmtime(&t) if you prefer UTC
-	std::ostringstream ss;
-	ss << std::put_time(&tm, "%Y-%m-%d");
-	return ss.str();
+	char buf[16];
+	if (std::strftime(buf, sizeof(buf), "%Y-%m-%d", &tm) == 0)
+		return std::string("Bad timestamp");
+	return std::string(buf);
 }
 
 int main()
 {
-	// std::string test = "2011-01-03";
-	// std::stringstream ss(test);
-	// int token;
-	// size_t pos = -1;
 
-	// while (ss >> token)
-	// {
-	// 	std::cout << std::abs(token) << '\n';
-	// }
-
-	std::cout << time_t_to_string(parse_date_to_time_t("2011-45-56"));
+	// Demonstration: valid and invalid inputs
+	const char *tests[] = {"2011-01-03", "2011-45-56", "2014-10-26", "2000-02-29", NULL};
+	for (const char **p = tests; *p; ++p)
+	{
+		std::time_t t = parse_date_to_time_t(*p);
+		std::cout << *p << " -> " << time_t_to_string(t) << '\n';
+	}
+	return 0;
 }
