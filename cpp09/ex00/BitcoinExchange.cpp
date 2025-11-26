@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include "Date.hpp"
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -60,34 +61,6 @@ int BitcoinExchange::logDebug(const std::string &what) const
 	return EXIT_SUCCESS;
 }
 
-bool BitcoinExchange::isValidDate(const std::string &date_str)
-{
-	int y, m, d;
-	char sep1, sep2;
-
-	std::istringstream ss(date_str);
-	if (!(ss >> y >> sep1 >> m >> sep2 >> d))
-		return false;
-	if (sep1 != '-' || sep2 != '-')
-		return false;
-
-	// Basic range checks
-	if (m < 1 || m > 12 || d < 1)
-		return false;
-
-	// Days per month
-	static const int days_in_month[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-	int dim = days_in_month[m - 1];
-	// Leap year check
-	if (m == 2 && ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)))
-		dim = 29;
-
-	if (d > dim)
-		return false;
-
-	return true;
-}
 
 std::string BitcoinExchange::trim(const std::string &str)
 {
@@ -121,11 +94,11 @@ int BitcoinExchange::parseInput()
 		std::string date_str = trim(line.substr(0, pipe_pos));
 		std::string value_str = trim(line.substr(pipe_pos + 1));
 
-		// if (!isValidDate(date_str))
-		// {
-		// 	logError("invalid date => " + date_str);
-		// 	continue;
-		// }
+		if (Date::to_time_t(date_str) == -1)
+		{
+			logError("invalid date => " + date_str);
+			continue;
+		}
 
 		char *endptr;
 		float value = std::strtof(value_str.c_str(), &endptr);
@@ -142,15 +115,15 @@ int BitcoinExchange::parseInput()
 			continue;
 		}
 
-		if (value > __INT_MAX__)
+		if (value > 471150.93)
 		{
 			logError("too large a number.");
 			continue;
 		}
 
 		// Add to map
-		m_input_map[date_str] = value;
-		logDebug("Parsed: " + date_str + " | " + value_str);
+		m_input_map.insert(std::make_pair(date_str, value));
+		// logDebug("Parsed: " + date_str + " | " + value_str);
 	}
 
 	return EXIT_SUCCESS;
@@ -179,11 +152,11 @@ int BitcoinExchange::parseData()
 		std::string date_str = trim(line.substr(0, pipe_pos));
 		std::string value_str = trim(line.substr(pipe_pos + 1));
 
-		// if (!isValidDate(date_str))
-		// {
-		// 	logError("invalid date => " + date_str);
-		// 	continue;
-		// }
+		if (Date::to_time_t(date_str) == -1)
+		{
+			logError("invalid date => " + date_str);
+			continue;
+		}
 
 		char *endptr;
 		float value = std::strtof(value_str.c_str(), &endptr);
@@ -200,7 +173,7 @@ int BitcoinExchange::parseData()
 			continue;
 		}
 
-		if (value > __INT_MAX__)
+		if (value > 471150.93)
 		{
 			logError("too large a number.");
 			continue;
@@ -208,7 +181,7 @@ int BitcoinExchange::parseData()
 
 		// Add to map
 		m_data_map[date_str] = value;
-		logDebug("Parsed: " + date_str + " | " + value_str);
+		// logDebug("Parsed: " + date_str + " | " + value_str);
 	}
 
 	return EXIT_SUCCESS;
@@ -216,5 +189,11 @@ int BitcoinExchange::parseData()
 
 int BitcoinExchange::calculate()
 {
-	
+	for (std::multimap<std::string, float>::iterator it = m_input_map.begin(); it != m_input_map.end(); ++it)
+	{
+		// logDebug(it->first);
+		std::cout << it->first << " => " << it->second << " => " << m_data_map[it->first] * it->second << '\n';
+	}
+	return 0;
 }
+

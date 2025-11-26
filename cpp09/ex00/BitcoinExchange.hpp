@@ -14,7 +14,7 @@ private:
 	std::string m_data;
 	std::string m_input;
 
-	std::map<std::string, float> m_input_map; 
+	std::multimap<std::string, float> m_input_map; 
 	std::map<std::string, float> m_data_map; 
 public:
 	BitcoinExchange();

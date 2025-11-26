@@ -1,6 +1,5 @@
 # Program name
 NAME = btc
-
 # Compiler
 CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow 
