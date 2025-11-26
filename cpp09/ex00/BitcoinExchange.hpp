@@ -15,6 +15,7 @@ private:
 	std::string m_input;
 
 	std::map<std::string, float> m_input_map; 
+	std::map<std::string, float> m_data_map; 
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &other);
@@ -27,7 +28,10 @@ public:
 	int logError(const std::string &what) const;
 	int logDebug(const std::string &what) const;
 
+	std::string trim(const std::string &str);
 	bool isValidDate(const std::string &date_str);
 	int parseInput();
+	int parseData();
+	int calculate();
 };
 

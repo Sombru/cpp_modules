@@ -65,14 +65,14 @@ std::time_t Date::to_time_t(const std::string &date_str)
 	return t;
 }
 
-std::string Date::to_string(std::time_t &t)
+std::string Date::to_string(const	 std::time_t &t)
 {
 	if (t == (std::time_t)-1)
-		return std::string("Bad timestamp");
+		return std::string("Bad date");
 
 	std::tm tm = *std::localtime(&t); 
 	char buf[16];
 	if (std::strftime(buf, sizeof(buf), "%Y-%m-%d", &tm) == 0)
-		return std::string("Bad timestamp");
+		return std::string("Bad date");
 	return std::string(buf);
 }
