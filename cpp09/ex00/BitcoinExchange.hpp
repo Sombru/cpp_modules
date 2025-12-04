@@ -8,14 +8,17 @@
 #include <map>
 #include <ctime>
 
+#define BAD -69.1f
+
 class BitcoinExchange
 {
 private:
 	std::string m_data;
 	std::string m_input;
+	std::string m_inputFile;
 
 	std::multimap<std::string, float> m_input_map; 
-	std::map<std::string, float> m_data_map; 
+	std::map<time_t, float> m_data_map; 
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &other);
