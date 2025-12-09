@@ -206,14 +206,10 @@ int BitcoinExchange::calculate()
 	{
 		if(it->second != BAD)
 		{
-			// Convert input date to time_t 
-			// std::time_t input_time = Date::to_time_t(it->first);
 
 			// Find the closest date in the database that is <= input date
 			std::map<time_t, float>::iterator db_it = m_data_map.upper_bound(Date::to_time_t(it->first));
 			
-			// upper_bound returns iterator to first element < key
-			// So we need to go back one to get the closest lower or equal date
 			if (db_it == m_data_map.begin())
 			{
 				logError("no data available for date => " + it->first);
