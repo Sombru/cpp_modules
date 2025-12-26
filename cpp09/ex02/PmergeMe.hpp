@@ -4,20 +4,29 @@
 #include <string>
 #include <vector>
 
+// template <typename T>
+struct Pair
+{
+	int low, high;
+	Pair(int a, int b) :low(a), high(b) {};
+};
+
 class PmergeMe
 {
 private:
 	char **m_input;
 	int m_size;
 	std::vector<int> vec;
-	std::vector<std::pair<int, int> > pairs;
 
 public:
 	PmergeMe(char **argv, int argc);
 	~PmergeMe();
 
 	int parseInput();
-	int MergeInsert();
-	int makePairs();
-	int sortPairs();
+	int sort();
+	void print();
+	
+	std::vector<size_t> fordJohnsonOrder(size_t n);
+	std::vector<std::pair<int, int> > makePairs(std::vector<int> &v, int *oddValue);
+	int fordJohnsonSort(std::vector<int> &v);
 };

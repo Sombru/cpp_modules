@@ -6,5 +6,6 @@ int main(int argc, char  *argv[])
 
 	(void)argc;
 	pm.parseInput();
-	pm.MergeInsert();
+	pm.sort();
+	pm.print();
 }
