@@ -25,6 +25,8 @@ public:
 	int parseInput();
 	int sort();
 	void print();
+	template <typename T>
+	void print_vec(const std::vector<T> &vec);
 	
 	std::vector<size_t> fordJohnsonOrder(size_t n);
 	std::vector<std::pair<int, int> > makePairs(std::vector<int> &v, int *oddValue);

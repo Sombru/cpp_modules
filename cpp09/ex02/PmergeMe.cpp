@@ -37,6 +37,16 @@ void PmergeMe::print()
 	
 }
 
+template <typename T>
+void PmergeMe::print_vec(const std::vector<T> &vec)
+{
+	for (size_t i = 0; i < vec.size(); ++i)
+	{
+		std::cout << "DEBUG:vec[" << i << "]: " << vec[i] << "\n";
+	}
+	
+}
+
 std::vector<size_t> PmergeMe::fordJohnsonOrder(size_t n)
 {
 	std::vector<size_t> order;
@@ -48,8 +58,9 @@ std::vector<size_t> PmergeMe::fordJohnsonOrder(size_t n)
 	jacob.push_back(1);
 	jacob.push_back(3);
 
-	while (jacob.back() < n)
-		jacob.push_back(jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2]);
+	size_t x = jacob.size();
+	while (jacob.back() < n) // generate jacobs numbers up to the size of pairs (if n = 5 jabcobs.back() == 3)
+		jacob.push_back((jacob[x - 1]) + (2 * jacob[x - 2])); // jacobs numbers recurence formula :Jn​=Jn−1​+2Jn−2
 
 	size_t prev = 0;
 	for (size_t k = 0; k < jacob.size(); ++k)
@@ -62,13 +73,14 @@ std::vector<size_t> PmergeMe::fordJohnsonOrder(size_t n)
 			break;
 	}
 
-
+	// print_vec(order);
 	return order;
 }
 
+// insert elemnt in sequence 
 void binaryInsert(std::vector<int> &arr, int value, size_t upperBound)
 {
-	size_t left = 0;
+	size_t left = 0; 
 	size_t right = upperBound;
 
 	while (left < right)
@@ -104,27 +116,27 @@ int PmergeMe::fordJohnsonSort(std::vector<int> &v)
 	if (hasOdd)
 		oddValue = v[i];
 	
-	// STEP 2: Extract winners (U)
-	std::vector<int> U;
+	// STEP 2: Extract winners (W)
+	std::vector<int> W;
 	for (size_t i = 0; i < pairs.size(); ++i)
 	{
-		U.push_back(pairs[i].second);
+		W.push_back(pairs[i].second);
 	}
 
-	// Recursively sort U
-	fordJohnsonSort(U);
+	// Recursively sort W
+	fordJohnsonSort(W);
 
 	// STEP 3: Insert losers (L)
-	std::vector<int> L = U;
+	std::vector<int> L = W;
 
-	// Generate insertion order
+	// Generate insertion order for (L)
 	std::vector<size_t> order = fordJohnsonOrder(pairs.size());
 
 	for (size_t k = 0; k < order.size(); ++k)
 	{
-		size_t idx = order[k];
-		int loser = pairs[idx].first;
-		int winner = pairs[idx].second;
+		size_t idx = order[k]; // index of (L) to be sorted/insterted
+		int loser = pairs[idx].first; // element in sequence
+		int winner = pairs[idx].second; // upper bound
 
 		// Find winner position in L
 		size_t upperBound = 0;
@@ -134,7 +146,7 @@ int PmergeMe::fordJohnsonSort(std::vector<int> &v)
 		binaryInsert(L, loser, upperBound);
 	}
 
-	// STEP 4: Insert odd element if present
+	// STEP 4: Insert odd element
 	if (hasOdd)
 	{
 		binaryInsert(L, oddValue, L.size());
