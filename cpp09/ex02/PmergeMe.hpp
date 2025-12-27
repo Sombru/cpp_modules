@@ -3,13 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
-// template <typename T>
-struct Pair
-{
-	int low, high;
-	Pair(int a, int b) :low(a), high(b) {};
-};
+#include <deque>
 
 class PmergeMe
 {
@@ -21,6 +15,8 @@ private:
 public:
 	PmergeMe(char **argv, int argc);
 	~PmergeMe();
+
+	int size();
 
 	int parseInput();
 	int sort();

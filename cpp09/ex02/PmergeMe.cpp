@@ -11,6 +11,8 @@ PmergeMe::~PmergeMe()
 {
 }
 
+int PmergeMe::size() {return this->m_size;}
+
 int PmergeMe::parseInput()
 {
 	vec.reserve(m_size);
@@ -22,6 +24,7 @@ int PmergeMe::parseInput()
 	return 0;
 }		
 
+
 int PmergeMe::sort()
 {
 	fordJohnsonSort(this->vec);
@@ -32,9 +35,9 @@ void PmergeMe::print()
 {
 	for (size_t i = 0; i < vec.size(); ++i)
 	{
-		std::cout << "vec[" << i << "]: " << vec[i] << "\n";
+		std::cout << vec[i] << ' ';
 	}
-	
+	std::cout << '\n';
 }
 
 template <typename T>
