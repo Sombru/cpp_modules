@@ -1,31 +1,25 @@
 #pragma once
 
 #include <iostream>
-
-enum operators
-{
-	PLUS,
-	MINUS,
-	DIVIDE,
-	MULTIPLY
-};
-
-
-struct vars
-{
-	int a;
-	int b;
-	operators c;
-};
+#include <string>
+#include <stack>
+#include <sstream>
+#include <cstdlib>
 
 class RPN
 {
 private:
-	std::string m_input;
+	std::stack<double> m_stack;
+
+	int isOperator(const std::string &token) const;
+	int isNumber(const std::string &token) const;
+	int performOperation(const std::string &op);
 
 public:
-	RPN(std::string m_input);
+	RPN();
+	RPN(const RPN &other);
+	RPN &operator=(const RPN &other);
 	~RPN();
-	int parseInput();
-};
 
+	int evaluate(const std::string &expression, double &result);
+};

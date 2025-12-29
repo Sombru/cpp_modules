@@ -4,10 +4,17 @@ int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		std::cerr << "Bad number of arguments\n";
+		std::cerr << "Error: bad number of arguments" << std::endl;
 		return 1;
 	}
 
-	RPN rpn(argv[1]);
+	RPN rpn;
+	double result;
+	if (!rpn.evaluate(argv[1], result))
+	{
+		return 1;
+	}
+	std::cout << result << std::endl;
 	
+	return 0;
 }
