@@ -6,16 +6,40 @@ int main(int argc, char *argv[])
 {
 	PmergeMe pm(argv, argc);
 
-	pm.parseInput();
+	if (pm.parseInput())
+	{
+		std::cerr << "Error\n";
+		return 1;
+	}
 	pm.print();
 	
 	clock_t start = clock();
-	pm.sort();
+	if (pm.sortVec())
+	{
+		std::cerr << "Error\n";
+		return 1;
+	}
 	clock_t end = clock();
 	
 	double duration = (double)(end - start) / CLOCKS_PER_SEC * 1000000;
 	
+	std::cout << "Time to sort a vector of: " << pm.size() << " elements, " << duration << " microseconds" << std::endl;
+
 	pm.print();
-	
-	std::cout << "Time to sort a sequence of: " << pm.size() << " elements, " << duration << " microseconds" << std::endl;
+
+	start = clock();
+
+	if (pm.sortDeq())
+	{
+		std::cerr << "Error\n";
+		return 1;
+	}
+
+	end = clock();
+
+	duration = (double)(end - start) / CLOCKS_PER_SEC * 1000000;
+
+	std::cout << "Time to sort a deque of: " << pm.size() << " elements, " << duration << " microseconds" << std::endl;
+
+	pm.print();
 }

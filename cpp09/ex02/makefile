@@ -2,7 +2,7 @@
 NAME = PmergeMe
 # Compiler
 CC    = c++
-FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow -fPIE	
+FLAGS = -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow -fPIE -g
 
 # Sources
 SRC = main.cpp PmergeMe.cpp

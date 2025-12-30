@@ -5,7 +5,7 @@ CC    = c++
 FLAGS = -g -std=c++98 -Wall -Wextra -Werror -Wshadow -Wno-shadow -fPIE	
 
 # Sources
-SRC = main.cpp BitcoinExchange.cpp Date.cpp
+SRC = main.cpp BitcoinExchange.cpp 
 
 # Objects
 OBJ_PATH = obj/

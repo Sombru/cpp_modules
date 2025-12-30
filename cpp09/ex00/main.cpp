@@ -1,5 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include "Date.hpp"
 
 int main(int argc, char *argv[])
 {
