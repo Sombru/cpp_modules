@@ -86,7 +86,7 @@ std::vector<size_t> PmergeMe::fordJohnsonOrder(size_t n)
 	jacob.push_back(3);
 
 	while (jacob.back() < n) // generate jacobs numbers up to the size of pairs (if n = 5 jabcobs.back() == 3)
-    jacob.push_back(jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2]);// jacobs numbers recurence formula :Jn​=Jn−1​+2Jn−2
+    jacob.push_back(jacob[jacob.size() - 1] + 2 * jacob[jacob.size() - 2]);// jacobs numbers recurence formula :Jn​=J[n-1] + 2(J[n-2])
 
 	size_t prev = 0;
 	for (size_t k = 0; k < jacob.size(); ++k)
@@ -239,9 +239,9 @@ int PmergeMe::fordJohnsonSort(std::deque<int> &v)
 
 	for (size_t k = 0; k < order.size(); ++k)
 	{
-		size_t idx = order[k]; // index of (L) to be sorted/insterted
+		size_t idx = order[k]; // index of (L) to be sorted/inserrted
 		int loser = pairs[idx].first; // element in sequence
-		int winner = pairs[idx].second; // upper bound
+		int winner = pairs[idx].second;
 
 		// Find winner position in L
 		size_t upperBound = 0;

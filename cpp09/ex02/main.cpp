@@ -43,3 +43,12 @@ int main(int argc, char *argv[])
 
 	pm.print();
 }
+
+// deque will be slower since it uses multiple memmoves to exapnd and multiple block layout can trigger cache miss
+
+// vector layout
+// [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ][ 6 ][ 7 ]
+
+// deque layout 
+// [ 1 ][ 2 ][ 3 ] -> [ 4 ][ 5 ][ 6 ] -> [ 7 ]
+    //   block 0          block 1          block 2

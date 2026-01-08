@@ -29,13 +29,13 @@ int RPN::isOperator(const std::string &token) const
 int RPN::isNumber(const std::string &token) const
 {
 	if (token.empty())
-		return 1;
+		return 0;
 
 	size_t start = 0;
 	if (token[0] == '-' || token[0] == '+')
 	{
 		if (token.length() == 1)
-			return 1;
+			return 0;
 		start = 1;
 	}
 
